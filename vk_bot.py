@@ -147,7 +147,7 @@ while True:
                                     'message': '',
                                     'random_id': '0',
                                     'attachment': random.choice(cat)})
-                                elif response == 'Википедия' or response == 'Вики' or response == 'википедия' or response == 'вики' or response == 'Wikipedia' or response == 'wikipedia' or response == 'Wiki' or response == 'wiki':  # если нам пришло сообщение с текстом Википедия или Вики или ... или wiki
+                elif response == 'Википедия' or response == 'Вики' or response == 'википедия' or response == 'вики' or response == 'Wikipedia' or response == 'wikipedia' or response == 'Wiki' or response == 'wiki':  # если нам пришло сообщение с текстом Википедия или Вики или ... или wiki
                     if event.from_user:  # Если написали в ЛC
                         session.method('messages.send', {'user_id': event.user_id,
                                                          'message': 'Введите запрос',
