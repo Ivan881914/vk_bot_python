@@ -6,7 +6,7 @@ import time
 
 # токен здесь - https://vkhost.github.io/
 session = vk_api.VkApi(
-    token='vk1.a.4NYt9zYAqZPYfgXxTHoIdnxJr8ylplZtCV0EBOFqVq0vxMC_IJ6W1jcaOP6bLWnleumiNEGdisEKOzcYOPDp6egIQS7nBls6twZ8FKXqCW-K5pBdQqhMolzqpoik2ZaU252sUyLcmvtUO4kTeUaKJ0YYIE9-oE-MEtA1K0UF1S0RIVn7tPLOJRfYFqPYtk-ZZkBimgy37gW1id0tyRh0Cw')
+    token='')
 session_api = session.get_api()
 longpoll = VkLongPoll(session)
 
