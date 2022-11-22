@@ -3,6 +3,8 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 import random
 from datetime import datetime
 import time
+import wikipedia #Модуль Википедии
+wikipedia.set_lang("RU")
 
 # токен здесь - https://vkhost.github.io/
 session = vk_api.VkApi(
