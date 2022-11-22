@@ -148,14 +148,14 @@ while True:
                                     'message': '',
                                     'random_id': '0',
                                     'attachment': random.choice(cat)})
-                elif response == 'википедия' or response == 'вики' or response == 'wikipedia' or response == 'wiki':  # если нам пришло сообщение с текстом Википедия или Вики или ... или wiki
+                elif response == 'википедия' or response == 'вики' or response == 'wikipedia' or response == 'wiki':
                     if event.from_user:
                         session.method('messages.send', {'user_id': event.user_id,
                                                          'message': 'Введите запрос',
                                                          'random_id': 0})
                     try:
                         for event in longpoll.listen():
-                            if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:  # Пинаем longpoll
+                            if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:
                                 if event.from_user:
                                     session.method('messages.send', {'user_id': event.user_id,
                                                                      'message': 'Вот что я нашёл: \n' + str(wikipedia.summary(event.text)),
