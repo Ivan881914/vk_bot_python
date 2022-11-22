@@ -7,8 +7,7 @@ import wikipedia
 wikipedia.set_lang("RU")
 
 # токен здесь - https://vkhost.github.io/
-session = vk_api.VkApi(
-    token='???')
+session = vk_api.VkApi(token='???')
 session_api = session.get_api()
 longpoll = VkLongPoll(session)
 
@@ -149,20 +148,25 @@ while True:
                                     'message': '',
                                     'random_id': '0',
                                     'attachment': random.choice(cat)})
-                elif response == 'Википедия' or response == 'Вики' or response == 'википедия' or response == 'вики' or response == 'Wikipedia' or response == 'wikipedia' or response == 'Wiki' or response == 'wiki':  # если нам пришло сообщение с текстом Википедия или Вики или ... или wiki
+                elif response == 'википедия' or response == 'вики' or response == 'wikipedia' or response == 'wiki':  # если нам пришло сообщение с текстом Википедия или Вики или ... или wiki
                     if event.from_user:  # Если написали в ЛC
                         session.method('messages.send', {'user_id': event.user_id,
                                                          'message': 'Введите запрос',
                                                          'random_id': 0})
-                    for event in longpoll.listen():
-                        if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:  # Пинаем longpoll
-                            if event.from_user:  # Если написали в ЛC
-                                session.method('messages.send', {'user_id': event.user_id,
-                                                                 'message': 'Вот что я нашёл: \n' + str(wikipedia.summary(event.text)),
-                                                                 'random_id': 0})
-                                break  # выходим из цикла
-                            break  # выходим из цикла
-                    continue
+                    try:
+                        for event in longpoll.listen():
+                            if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:  # Пинаем longpoll
+                                if event.from_user:
+                                    session.method('messages.send', {'user_id': event.user_id,
+                                                                     'message': 'Вот что я нашёл: \n' + str(wikipedia.summary(event.text)),
+                                                                     'random_id': 0})
+                                    break
+                                break
+                        continue
+                    except:
+                        session.method('messages.send', {'user_id': event.user_id,
+                                                         'message': 'Не найдено или неправильно задан запрос.',
+                                                         'random_id': 0})
                 else:
                     #time.sleep(random.uniform(0.5, 2.0))
                     session.method('messages.send',
